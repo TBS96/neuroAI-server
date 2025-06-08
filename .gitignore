@@ -1,0 +1,6 @@
+venv
+Venv
+Mentalhealth/Mentalhealth/__pycache__/
+Mentalhealth/NeuroAI/__pycache__/
+Mentalhealth/NeuroAI/migrations
+.env
