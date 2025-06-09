@@ -78,13 +78,13 @@ class Chatbot(APIView):
         headers = {
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json",
-            "HTTP-Referer": "http://127.0.0.1:8000/",
-            "X-Title": "neuroAI"
+            # "HTTP-Referer": "http://127.0.0.1:8000/",
+            # "X-Title": "neuroAI"
         }
         
         payload = {
             "model": "meta-llama/llama-3-8b-instruct",
-            "messages": [{"role": "user", "content": 'How can i help you?'}]
+            "messages": [{"role": "user", "content": user_input}]
         }
         
         try:
