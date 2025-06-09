@@ -83,7 +83,7 @@ class Chatbot(APIView):
         }
         
         payload = {
-            "model": "meta-llama/llama-3-8b-instruct",
+            "model": "meta-llama/llama-3.3-8b-instruct:free",
             "messages": [{"role": "user", "content": user_input}]
         }
         
