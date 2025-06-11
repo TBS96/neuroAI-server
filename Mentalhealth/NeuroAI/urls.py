@@ -23,7 +23,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('chatbot/', Chatbot.as_view(), name='chatbot'),
-    path('chat/', ChatHistoryView.as_view(), name='chat-history'),
+    path('chat-history/', ChatHistoryView.as_view(), name='chat-history'),
     # path('', include(router.urls)), 
 ]
 
