@@ -1,6 +1,6 @@
 from django.urls import path,include
 from rest_framework.routers import DefaultRouter
-from .views import RegisterView,LoginView,QuestionsView, ResponseView, BulkResponseView, logoutView, RequestPasswordReset,ResetPassword, Chatbot
+from .views import RegisterView,LoginView,QuestionsView, ResponseView, BulkResponseView, logoutView, RequestPasswordReset,ResetPassword, Chatbot,ChatHistoryView
 from .import views
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('chatbot/', Chatbot.as_view(), name='chatbot'),
+    path('chat/', ChatHistoryView.as_view(), name='chat-history'),
     # path('', include(router.urls)), 
 ]
 

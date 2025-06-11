@@ -3,8 +3,8 @@ from rest_framework import generics
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.views import APIView
-from .models import RegisterUser, Questions, Response as ResponseTable , DisorderSave,Disorder,PasswordReset
-from .serializers import RegisterSerializer,LoginSerializer, QuestionsSerializer, ResponseSerializer,BulkResponseSerializer, DisorderSerializer, LogoutSerializer,ResetPasswordRequestSerializer,ResetPasswordSerializer
+from .models import RegisterUser, Questions, Response as ResponseTable , DisorderSave,Disorder,PasswordReset,ChatHistory
+from .serializers import RegisterSerializer,LoginSerializer, QuestionsSerializer, ResponseSerializer,BulkResponseSerializer, DisorderSerializer, LogoutSerializer,ResetPasswordRequestSerializer,ResetPasswordSerializer,ChatHistorySerializer
 from django.contrib.auth import authenticate
 from rest_framework.response import Response 
 from rest_framework import status,permissions
@@ -268,6 +268,44 @@ def Disorder_recommendation(request):
         }
         
         return Response(data, status=status.HTTP_200_OK)
+        
+class ChatHistoryView(generics.GenericAPIView):
+    serializer_class = ChatHistorySerializer
+    permission_classes = [IsAuthenticated]
+    def post(self, request, *args, **kwargs):
+        
+        user = request.user
+        new_data = request.data 
+        if not isinstance(new_data, list):
+            return Response({"error": "Invalid data format. Expected a list."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            chat = ChatHistory.objects.get(user=user)
+            try:
+                existing_history = json.loads(chat.history)
+            except json.JSONDecodeError:
+                existing_history = []
+            existing_history.extend(new_data)
+            chat.history = json.dumps(existing_history)
+        except ChatHistory.DoesNotExist:
+            chat = ChatHistory(user=user, history=json.dumps(new_data))
+
+        chat.save()
+        return Response(new_data, status=status.HTTP_200_OK)
+    
+    def get (self,request, *args, **kwargs):
+        user = request.user
+        try:
+            chat = ChatHistory.objects.get(user=user)
+            return Response(json.loads(chat.history), status=status.HTTP_200_OK)
+        except ChatHistory.DoesNotExist:
+            return Response([], status=200)
+        
+
+            
+            
+        
+
         
 
 

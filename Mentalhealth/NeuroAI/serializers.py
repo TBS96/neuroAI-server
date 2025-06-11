@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import RegisterUser, Questions, Response, Disorder, DisorderSave
+from .models import RegisterUser, Questions, Response, Disorder, DisorderSave,ChatHistory
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -92,6 +92,11 @@ class DisorderSerializer(serializers.ModelSerializer):
         model = Disorder
         fields = ['disorder', 'exercise', 'meditation']
     
+class ChatHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatHistory
+        fields = ['user', 'history']
+        read_only_fields = ['user']
 
         
 

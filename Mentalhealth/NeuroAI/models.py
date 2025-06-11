@@ -98,6 +98,13 @@ class Response(models.Model):
     def __str__(self):
         return self.response
     
+class ChatHistory(models.Model):
+    user = models.OneToOneField(RegisterUser, on_delete=models.CASCADE)
+    history = models.TextField()  
+
+    def __str__(self):
+        return self.history
+
 
     
     
