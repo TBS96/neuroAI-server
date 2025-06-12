@@ -2,5 +2,8 @@ venv
 Venv
 Mentalhealth/Mentalhealth/__pycache__/
 Mentalhealth/NeuroAI/__pycache__/
-Mentalhealth/NeuroAI/migrations
+Mentalhealth/NeuroAI/migrations/__pycache__
 .env
+
+dbdata.json
+neuroai_postgres_db.sql
