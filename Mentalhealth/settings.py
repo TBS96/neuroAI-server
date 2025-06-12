@@ -44,7 +44,9 @@ EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == 'True'  # convert to boolean
 # print(f"EMAIL_USE_TLS = {EMAIL_USE_TLS}")
 
 ALLOWED_HOSTS = ['*']
-CORS_ALLOW_ALL_ORIGINS = True 
+# ALLOWED_HOSTS = ['https://neuro-ai-client.vercel.app/']
+# CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 
