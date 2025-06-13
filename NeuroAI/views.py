@@ -165,7 +165,8 @@ class RequestPasswordReset(generics.GenericAPIView):
                reset.save()
             #       Add your frontend url of forgot password
             #    reset_url = f'http://localhost:5173/password_reset/confirm/{token}'
-               reset_url = f'http://192.168.0.102:5173/password_reset/confirm/{token}'
+            #    reset_url = f'http://192.168.0.102:5173/password_reset/confirm/{token}'
+               reset_url = f'https://neuro-ai-client.vercel.app/password_reset/confirm/{token}'
                send_mail(
                    'Password Reset Request',
                    f'Please go to the following link to reset your password: {reset_url}',
