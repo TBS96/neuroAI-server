@@ -166,10 +166,17 @@ class RequestPasswordReset(generics.GenericAPIView):
             #       Add your frontend url of forgot password
             #    reset_url = f'http://localhost:5173/password_reset/confirm/{token}'
             #    reset_url = f'http://192.168.0.102:5173/password_reset/confirm/{token}'
-               reset_url = f'https://neuro-ai-client.vercel.app/password_reset/confirm/{token}'
+            #    reset_url = f'https://neuro-ai-client.vercel.app/password_reset/confirm/{token}'
+               reset_url = f"""
+                You can reset your password using either of the following links:
+                [NeuroAI Client-old domain](https://neuro-ai-client.vercel.app/password_reset/confirm/{token})
+                [NeuroAICS-new domain](https://neuroaics.vercel.app/password_reset/confirm/{token})
+                Please choose the link that matches your preferred domain.
+                """
+               print(reset_url)
                send_mail(
                    'Password Reset Request',
-                   f'Please go to the following link to reset your password: {reset_url}',
+                   f'Please go to either of the following links to reset your password: {reset_url}',
                    'prantik.ghosh59@gmail.com',
                    [email],
                    fail_silently=False
