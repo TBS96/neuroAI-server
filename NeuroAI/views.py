@@ -168,20 +168,18 @@ class RequestPasswordReset(generics.GenericAPIView):
             #    reset_url = f'http://192.168.0.102:5173/password_reset/confirm/{token}'
             #    reset_url = f'https://neuro-ai-client.vercel.app/password_reset/confirm/{token}'
                reset_url = f"""
-                You can reset your password using either of the following links:
-                [NeuroAI Client-old domain](https://neuro-ai-client.vercel.app/password_reset/confirm/{token})
-                [NeuroAICS-new domain](https://neuroaics.vercel.app/password_reset/confirm/{token})
-                Please choose the link that matches your preferred domain.
+                NeuroAI Client(old domain): https://neuro-ai-client.vercel.app/password_reset/confirm/{token}
+                NeuroAICS(new domain): https://neuroaics.vercel.app/password_reset/confirm/{token}
                 """
                print(reset_url)
                send_mail(
                    'Password Reset Request',
-                   f'Please go to either of the following links to reset your password: {reset_url}',
+                   f'Please choose any one link that matches your preferred domain, to reset password: {reset_url}',
                    'prantik.ghosh59@gmail.com',
                    [email],
                    fail_silently=False
                    )
-               return Response({"message": "Password reset link sent to your email"}, status=200)
+               return Response({"message": "Password reset link has been sent to your email"}, status=200)
             else:
                return Response({"message": "User not found"}, status=404)
         return Response(serializer.errors, status=400)
